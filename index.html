@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SourcDirect – Goedkoper inkopen uit China voor bol.com verkopers</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --primary: #0052cc;
+      --primary-dark: #003d99;
+      --accent: #ff6b00;
+      --accent-dark: #e05a00;
+      --light-bg: #f4f7ff;
+      --border: #dde3f0;
+      --text-muted: #6b7280;
+      --success: #16a34a;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,82,204,0.10);
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+    .nav-logo span.accent { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #0052cc 0%, #1a3a6e 100%);
+      color: #fff;
+      padding: 80px 5% 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: rgba(255,107,0,0.15);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 260px; height: 260px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,107,0,0.2);
+      border: 1px solid rgba(255,107,0,0.5);
+      color: #ffb366;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 .highlight { color: #ffb366; }
+    .hero p {
+      font-size: 1.15rem;
+      opacity: 0.88;
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.4);
+      padding: 14px 30px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.22); }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ffb366;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 72px 5%; }
+    .section-label {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: #1a1a2e;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      font-size: 1rem;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-it-works { background: var(--light-bg); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .step-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      border-top: 4px solid var(--primary);
+    }
+    .step-number {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+    }
+    .step-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #1a1a2e;
+    }
+    .step-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .step-arrow {
+      display: none;
+    }
+
+    /* ===== BENEFITS ===== */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .benefit-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .benefit-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+    .benefit-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+    .benefit-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .benefit-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== FORM SECTION ===== */
+    .form-section {
+      background: var(--light-bg);
+    }
+    .form-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,82,204,0.12);
+      overflow: hidden;
+    }
+    .form-header {
+      background: linear-gradient(135deg, var(--primary), #1a3a6e);
+      color: #fff;
+      padding: 32px 40px;
+    }
+    .form-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .form-header p {
+      opacity: 0.82;
+      font-size: 0.95rem;
+    }
+    .form-body {
+      padding: 36px 40px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+    label .required { color: var(--accent); margin-left: 2px; }
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #1a1a2e;
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,82,204,0.1);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    /* ===== PRODUCT CARDS ===== */
+    .products-container {
+      margin-top: 8px;
+    }
+    .product-card {
+      background: var(--light-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .product-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .product-card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .product-card-title .product-num {
+      background: var(--primary);
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .btn-remove {
+      background: none;
+      border: 1px solid #fca5a5;
+      color: #dc2626;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-remove:hover { background: #fee2e2; }
+    .product-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .product-fields .full-width {
+      grid-column: 1 / -1;
+    }
+    .btn-add-product {
+      width: 100%;
+      padding: 13px;
+      border: 2px dashed var(--primary);
+      background: none;
+      color: var(--primary);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .btn-add-product:hover { background: rgba(0,82,204,0.06); }
+
+    /* ===== DIVIDER ===== */
+    .form-divider {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 28px 0;
+    }
+    .form-section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .form-section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* ===== SUBMIT ===== */
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-submit:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn-submit:disabled { background: #9ca3af; cursor: not-allowed; transform: none; }
+    .form-disclaimer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    /* ===== SUCCESS MESSAGE ===== */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 48px 40px;
+    }
+    .success-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
+    .success-message h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--success);
+      margin-bottom: 10px;
+    }
+    .success-message p {
+      color: var(--text-muted);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      opacity: 0.85;
+    }
+    .trust-item .icon { font-size: 1.1rem; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0f0f1a;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 28px 5%;
+      font-size: 0.85rem;
+    }
+    footer strong { color: #fff; }
+
+    /* ===== SPINNER ===== */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .product-fields { grid-template-columns: 1fr; }
+      .product-fields .full-width { grid-column: 1; }
+      .form-body { padding: 24px 20px; }
+      .form-header { padding: 24px 20px; }
+      .hero-stats { gap: 24px; }
+      nav { padding: 0 4%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <div class="logo-icon">S</div>
+      Sourc<span class="accent">Direct</span>
+    </div>
+    <a href="#offerte" class="nav-cta">Gratis offerte →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🇨🇳 Specialist in China-import voor bol.com verkopers</div>
+    <h1>Koop <span class="highlight">goedkoper in</span> uit China.<br>Verkoop meer op bol.com.</h1>
+    <p>Plak je Alibaba links en ontvang binnen 48 uur een offerte op maat. Wij regelen de inkoop, kwaliteitscontrole en consolidatie.</p>
+    <div class="hero-buttons">
+      <a href="#offerte" class="btn-primary">🚀 Vraag gratis offerte aan</a>
+      <a href="#hoe-het-werkt" class="btn-secondary">Hoe werkt het?</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">48u</div>
+        <div class="stat-label">Offerte binnen</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Gratis aanvragen</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">€0</div>
+        <div class="stat-label">Geen verborgen kosten</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="hoe-het-werkt">
+    <div class="section-label">Werkwijze</div>
+    <h2 class="section-title">In 3 stappen naar een betere inkoopprijs</h2>
+    <p class="section-sub">Geen gedoe met Chinese leveranciers, taalbarrières of kwaliteitsproblemen. Wij doen het voor je.</p>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>📋 Stuur je Alibaba links</h3>
+        <p>Vul het formulier in met de Alibaba productlinks die je wilt inkopen, inclusief de huidige prijs en gewenste hoeveelheid.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>🔍 Wij zoeken beter</h3>
+        <p>Wij analyseren je producten, vergelijken leveranciers en zoeken naar betere kwaliteit of lagere prijzen dan jij zelf gevonden hebt.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>📦 Offerte & levering</h3>
+        <p>Je ontvangt een offerte op maat. Na akkoord regelen wij de inkoop, kwaliteitscontrole en consolidatie naar Nederland.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="voordelen">
+    <div class="section-label">Voordelen</div>
+    <h2 class="section-title">Waarom bol.com verkopers voor SourcDirect kiezen</h2>
+    <p class="section-sub">Meer marge, minder risico. Wij kennen de Chinese markt van binnen en buiten.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <h3>Lagere inkoopprijs</h3>
+        <p>Dankzij onze relaties met fabrikanten en ervaring in onderhandelen betaal je minder dan via standaard Alibaba listings.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📦</div>
+        <h3>Consolidatie van zendingen</h3>
+        <p>Meerdere producten van verschillende leveranciers samenvoegen in één zending = lagere verzendkosten per product.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">✅</div>
+        <h3>Kwaliteitscontrole</h3>
+        <p>Wij inspecteren je goederen vóór verzending. Geen nare verrassingen bij aankomst of slechte reviews op bol.com.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌏</div>
+        <h3>Jarenlange importervaring</h3>
+        <p>Wij importeren al jaren goederen uit China en kennen de valkuilen, douaneprocedures en betrouwbare leveranciers.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <h3>Snel & transparant</h3>
+        <p>Offerte binnen 48 uur. Geen verborgen kosten. Jij beslist altijd zelf of je akkoord gaat.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎯</div>
+        <h3>Specifiek voor bol.com</h3>
+        <p>Wij begrijpen de bol.com markt. We denken mee over verpakking, EAN-codes en wat goed verkoopt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section class="form-section" id="offerte">
+    <div class="section-label">Offerte aanvragen</div>
+    <h2 class="section-title">Vraag je gratis offerte aan</h2>
+    <p class="section-sub">Vul je gegevens en Alibaba links in. Wij nemen binnen 48 uur contact op.</p>
+
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h2>📋 Offerte aanvraagformulier</h2>
+        <p>Gratis en vrijblijvend — wij analyseren jouw producten en komen terug met een scherpe prijs.</p>
+      </div>
+
+      <div class="form-body" id="formBody">
+        <form id="sourcing-form" novalidate>
+
+          <!-- CONTACT INFO -->
+          <div class="form-section-title">Jouw gegevens</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="naam">Naam <span class="required">*</span></label>
+              <input type="text" id="naam" name="naam" placeholder="Jan de Vries" required />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mailadres <span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jan@mijnwinkel.nl" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="winkel">Bol.com winkelnaam <span class="required">*</span></label>
+              <input type="text" id="winkel" name="winkel" placeholder="Mijn Bol Winkel" required />
+            </div>
+            <div class="form-group">
+              <label for="telefoon">Telefoonnummer <span style="color:var(--text-muted);font-weight:400">(optioneel)</span></label>
+              <input type="text" id="telefoon" name="telefoon" placeholder="+31 6 12345678" />
+            </div>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- PRODUCTS -->
+          <div class="form-section-title">Alibaba producten</div>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:18px;">Voeg hieronder de producten toe die je wilt inkopen. Vul de Alibaba link en de huidige prijs in zodat wij kunnen vergelijken.</p>
+
+          <div class="products-container" id="productsContainer">
+            <!-- Product cards worden hier dynamisch toegevoegd -->
+          </div>
+
+          <button type="button" class="btn-add-product" id="addProductBtn" onclick="addProduct()">
+            <span>＋</span> Product toevoegen
+          </button>
+
+          <hr class="form-divider" />
+
+          <!-- EXTRA INFO -->
+          <div class="form-section-title">Extra informatie</div>
+          <div class="form-group">
+            <label for="opmerkingen">Opmerkingen / wensen</label>
+            <textarea id="opmerkingen" name="opmerkingen" placeholder="Bijv. specifieke verpakkingswensen, deadline, budget, of andere informatie die handig is voor ons..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span id="submitText">🚀 Verstuur offerte aanvraag</span>
+            <div class="spinner" id="spinner"></div>
+          </button>
+          <p class="form-disclaimer">🔒 Je gegevens worden vertrouwelijk behandeld en nooit gedeeld met derden.</p>
+        </form>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">🎉</div>
+        <h3>Aanvraag ontvangen!</h3>
+        <p>Bedankt voor je aanvraag. We nemen binnen <strong>48 uur</strong> contact met je op via e-mail met een offerte op maat.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><span class="icon">🔒</span> Vertrouwelijke behandeling</div>
+    <div class="trust-item"><span class="icon">⚡</span> Reactie binnen 48 uur</div>
+    <div class="trust-item"><span class="icon">🇳🇱</span> Nederlands bedrijf</div>
+    <div class="trust-item"><span class="icon">✅</span> Gratis & vrijblijvend</div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <strong>SourcDirect</strong> — Specialist in China-import voor bol.com verkopers</p>
+    <p style="margin-top:6px;">Vragen? Mail ons op <strong>info@sourcdirect.nl</strong></p>
+  </footer>
+
+  <script>
+    // =============================================
+    // CONFIGURATIE — VERVANG DIT MET JOUW WAARDEN
+    // =============================================
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKQ4BodV8gTkYtpPKtrtSUP4o8iiLZcpACpd0wL9jBxy6w4P7pnRmjxlLctkX7fxCT9g/exec';
+    // Zie README.md voor instructies hoe je dit instelt
+    // =============================================
+
+    let productCount = 0;
+
+    function addProduct() {
+      if (productCount >= 10) {
+        alert('Je kunt maximaal 10 producten per aanvraag toevoegen.');
+        return;
+      }
+      productCount++;
+      const num = productCount;
+      const container = document.getElementById('productsContainer');
+
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.id = `product-${num}`;
+      card.innerHTML = `
+        <div class="product-card-header">
+          <div class="product-card-title">
+            <div class="product-num">${num}</div>
+            Product ${num}
+          </div>
+          ${num > 1 ? `<button type="button" class="btn-remove" onclick="removeProduct(${num})">✕ Verwijder</button>` : ''}
+        </div>
+        <div class="product-fields">
+          <div class="form-group full-width">
+            <label>Alibaba product URL <span class="required">*</span></label>
+            <input type="url" name="product_${num}_url" placeholder="https://www.alibaba.com/product-detail/..." required />
+          </div>
+          <div class="form-group">
+            <label>Huidige prijs op Alibaba (per stuk)</label>
+            <input type="text" name="product_${num}_prijs" placeholder="bijv. $2.50 of €2,30" />
+          </div>
+          <div class="form-group">
+            <label>Gewenste hoeveelheid (stuks)</label>
+            <input type="number" name="product_${num}_qty" placeholder="bijv. 500" min="1" />
+          </div>
+          <div class="form-group full-width">
+            <label>Productomschrijving / naam</label>
+            <input type="text" name="product_${num}_naam" placeholder="bijv. Bamboe snijplank 30x20cm" />
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+
+      // Scroll naar nieuw product
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function removeProduct(num) {
+      const card = document.getElementById(`product-${num}`);
+      if (card) card.remove();
+    }
+
+    // Voeg automatisch 1 product toe bij laden
+    addProduct();
+
+    // =============================================
+    // FORM SUBMIT
+    // =============================================
+    document.getElementById('sourcing-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Validatie
+      const naam = document.getElementById('naam').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const winkel = document.getElementById('winkel').value.trim();
+
+      if (!naam || !email || !winkel) {
+        alert('Vul je naam, e-mailadres en winkelnaam in.');
+        return;
+      }
+
+      // Check of er minstens 1 product URL is
+      const productUrls = document.querySelectorAll('[name$="_url"]');
+      let hasProduct = false;
+      productUrls.forEach(input => {
+        if (input.value.trim()) hasProduct = true;
+      });
+      if (!hasProduct) {
+        alert('Voeg minstens één Alibaba product link toe.');
+        return;
+      }
+
+      // UI: loading state
+      const submitBtn = document.getElementById('submitBtn');
+      const submitText = document.getElementById('submitText');
+      const spinner = document.getElementById('spinner');
+      submitBtn.disabled = true;
+      submitText.textContent = 'Versturen...';
+      spinner.style.display = 'block';
+
+      // Verzamel alle form data
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+      data.timestamp = new Date().toLocaleString('nl-NL', { timeZone: 'Europe/Amsterdam' });
+
+      try {
+        if (GOOGLE_SCRIPT_URL === 'JOUW_GOOGLE_APPS_SCRIPT_URL_HIER') {
+          // Demo mode: simuleer succes
+          await new Promise(resolve => setTimeout(resolve, 1200));
+          showSuccess();
+        } else {
+          // Echte submit naar Google Sheets
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          showSuccess();
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Er is iets misgegaan. Probeer het opnieuw of mail ons direct op info@sourcdirect.nl');
+        submitBtn.disabled = false;
+        submitText.textContent = '🚀 Verstuur offerte aanvraag';
+        spinner.style.display = 'none';
+      }
+    });
+
+    function showSuccess() {
+      document.getElementById('formBody').style.display = 'none';
+      const success = document.getElementById('successMessage');
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+
+</body>
+</html>
