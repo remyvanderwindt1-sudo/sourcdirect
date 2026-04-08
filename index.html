@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SourcDirect – Goedkoper inkopen uit China voor bol.com verkopers</title>
+  <title>windtco – E-Commerce Services voor bol.com verkopers</title>
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,25 +48,7 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--primary);
-      letter-spacing: -0.5px;
     }
-    .nav-logo .logo-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--primary);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 900;
-    }
-    .nav-logo span.accent { color: var(--accent); }
     .nav-cta {
       background: var(--accent);
       color: #fff;
@@ -560,15 +542,23 @@
   <!-- NAVBAR -->
   <nav>
     <div class="nav-logo">
-      <div class="logo-icon">S</div>
-      Sourc<span class="accent">Direct</span>
+      <svg width="155" height="38" viewBox="0 0 155 38" xmlns="http://www.w3.org/2000/svg">
+        <!-- Icon mark -->
+        <rect x="0" y="1" width="36" height="36" rx="7" fill="#1A44C2"/>
+        <polyline points="6,10 12,26 20,16 29,26 34,10" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="30" r="2.2" fill="#F97316"/>
+        <!-- Wordmark -->
+        <text x="46" y="27" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="22px" letter-spacing="-0.5px" fill="#1A44C2">windtco</text>
+        <!-- Oranje accent streep -->
+        <rect x="46" y="31" width="34" height="2" rx="1" fill="#F97316"/>
+      </svg>
     </div>
     <a href="#offerte" class="nav-cta">Gratis offerte →</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">🇨🇳 Specialist in China-import voor bol.com verkopers</div>
+    <div class="hero-badge">🏪 E-Commerce Services voor bol.com verkopers</div>
     <h1>Koop <span class="highlight">goedkoper in</span> uit China.<br>Verkoop meer op bol.com.</h1>
     <p>Plak je Alibaba links en ontvang binnen 48 uur een offerte op maat. Wij regelen de inkoop, kwaliteitscontrole en consolidatie.</p>
     <div class="hero-buttons">
@@ -618,7 +608,7 @@
   <!-- BENEFITS -->
   <section id="voordelen">
     <div class="section-label">Voordelen</div>
-    <h2 class="section-title">Waarom bol.com verkopers voor SourcDirect kiezen</h2>
+    <h2 class="section-title">Waarom bol.com verkopers voor windtco kiezen</h2>
     <p class="section-sub">Meer marge, minder risico. Wij kennen de Chinese markt van binnen en buiten.</p>
     <div class="benefits-grid">
       <div class="benefit-card">
@@ -742,8 +732,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 <strong>SourcDirect</strong> — Specialist in China-import voor bol.com verkopers</p>
-    <p style="margin-top:6px;">Vragen? Mail ons op <strong>info@sourcdirect.nl</strong></p>
+    <p>© 2026 <strong>windtco</strong> — E-Commerce Services voor bol.com verkopers</p>
+    <p style="margin-top:6px;">Vragen? Mail ons op <strong>info@windtco.nl</strong></p>
   </footer>
 
   <script>
@@ -869,7 +859,7 @@
         }
       } catch (err) {
         console.error(err);
-        alert('Er is iets misgegaan. Probeer het opnieuw of mail ons direct op info@sourcdirect.nl');
+        alert('Er is iets misgegaan. Probeer het opnieuw of mail ons direct op info@windtco.nl');
         submitBtn.disabled = false;
         submitText.textContent = '🚀 Verstuur offerte aanvraag';
         spinner.style.display = 'none';

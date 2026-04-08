@@ -1,5 +1,5 @@
 /**
- * SourcDirect – Google Apps Script
+ * windtco – Google Apps Script
  * ================================
  * Plak dit script in je Google Sheets via:
  * Extensies → Apps Script → vervang alles → Sla op → Implementeer
@@ -15,7 +15,7 @@ const MAX_PRODUCTS = 10;              // Maximaal aantal producten per aanvraag
 // =============================================
 
 /**
- * Verwerkt POST requests van het SourcDirect formulier
+ * Verwerkt POST requests van het windtco formulier
  */
 function doPost(e) {
   try {
@@ -34,7 +34,7 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
-    console.error('SourcDirect fout:', err);
+    console.error('windtco fout:', err);
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -46,7 +46,7 @@ function doPost(e) {
  */
 function doGet(e) {
   return ContentService
-    .createTextOutput('SourcDirect Apps Script is actief ✅')
+    .createTextOutput('windtco Apps Script is actief ✅')
     .setMimeType(ContentService.MimeType.TEXT);
 }
 
@@ -193,10 +193,10 @@ function formatLastRow(sheet) {
  */
 /*
 function sendNotificationEmail(data) {
-  const recipient = 'info@sourcdirect.nl';  // Jouw e-mailadres
+  const recipient = 'info@windtco.nl';  // Jouw e-mailadres
   const subject = `Nieuwe sourcing aanvraag van ${data.naam} (${data.winkel})`;
   
-  let body = `Nieuwe aanvraag ontvangen via SourcDirect!\n\n`;
+  let body = `Nieuwe aanvraag ontvangen via windtco!\n\n`;
   body += `Naam: ${data.naam}\n`;
   body += `E-mail: ${data.email}\n`;
   body += `Winkel: ${data.winkel}\n`;
