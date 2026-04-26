@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veelgestelde vragen – windtco</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    :root {
+      --primary: #0052cc;
+      --primary-dark: #003d99;
+      --accent: #ff6b00;
+      --accent-dark: #e05a00;
+      --light-bg: #f4f7ff;
+      --border: #dde3f0;
+      --text-muted: #6b7280;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,82,204,0.10);
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--primary); }
+    .nav-link.active { color: var(--primary); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: linear-gradient(135deg, #0052cc 0%, #1a3a6e 100%);
+      color: #fff;
+      padding: 60px 5% 70px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .page-header p {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 5%;
+    }
+    .faq-category {
+      margin-bottom: 48px;
+    }
+    .faq-category-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+    .faq-item {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .faq-item:hover {
+      box-shadow: var(--shadow);
+    }
+    .faq-question {
+      width: 100%;
+      background: #fff;
+      border: none;
+      padding: 20px 24px;
+      text-align: left;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .faq-question:hover { background: var(--light-bg); }
+    .faq-item.open .faq-question { background: var(--light-bg); color: var(--primary); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--primary);
+      transition: transform 0.25s, background 0.2s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--primary);
+      color: #fff;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 20px;
+    }
+
+    /* ===== CTA BLOCK ===== */
+    .faq-cta {
+      background: var(--light-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 16px;
+    }
+    .faq-cta h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .faq-cta p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      opacity: 0.85;
+    }
+    .trust-item .icon { font-size: 1.1rem; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0f0f1a;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 28px 5%;
+      font-size: 0.85rem;
+    }
+    footer strong { color: #fff; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 4%; }
+      .nav-link { display: none; }
+      .faq-section { padding: 40px 5%; }
+      .faq-cta { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <svg width="155" height="38" viewBox="0 0 155 38" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="1" width="36" height="36" rx="7" fill="#1A44C2"/>
+        <polyline points="6,10 12,26 20,16 29,26 34,10" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="30" r="2.2" fill="#F97316"/>
+        <text x="46" y="27" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="22px" letter-spacing="-0.5px" fill="#1A44C2">windtco</text>
+        <rect x="46" y="31" width="34" height="2" rx="1" fill="#F97316"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="faq.html" class="nav-link active">FAQ</a>
+      <a href="index.html#offerte" class="nav-cta">Gratis offerte →</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Veelgestelde vragen</h1>
+    <p>Alles wat je wilt weten over onze sourcing service voor bol.com verkopers.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+
+    <div class="faq-category">
+      <div class="faq-category-title">Over de service</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Is een offerte aanvragen echt gratis?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Ja, volledig gratis en vrijblijvend. Je betaalt niets voor het aanvragen van een offerte. Pas als je akkoord gaat met onze prijs en de samenwerking start, worden er kosten in rekening gebracht.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Hoe snel ontvang ik een offerte?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Wij streven ernaar om binnen 48 uur na ontvangst van je aanvraag een offerte op maat te sturen. Bij complexe aanvragen met veel producten kan dit soms iets langer duren — we laten het je altijd weten.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Wat kost de windtco service?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Onze servicefee is verwerkt in de offerteprijs die je ontvangt. Er zijn geen verborgen kosten of abonnementen. Je ziet altijd exact wat je betaalt voordat je een beslissing neemt.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Werken jullie alleen met bol.com verkopers?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">We richten ons primair op bol.com verkopers omdat we de Nederlandse e-commerce markt goed kennen. Maar we helpen ook verkopers op andere platformen zoals Amazon.nl of webshop-eigenaren. Neem gerust contact op als je twijfelt.</div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-category-title">Inkoop & producten</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Welke producten kunnen jullie sourcen?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Wij sourcen vrijwel alle productcategorieën die op Alibaba verkrijgbaar zijn: huishoudartikelen, elektronica, speelgoed, tuinartikelen, kleding, en meer. Producten die aan strenge veiligheidseisen moeten voldoen (zoals CE-keurmark) pakken we ook op — we helpen je met de juiste certificering.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Wat als ik al een leverancier heb op Alibaba?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Geen probleem. Plak gewoon de Alibaba-link van jouw huidige leverancier in het formulier met de prijs die je nu betaalt. Wij kijken of we hetzelfde product goedkoper of van betere kwaliteit kunnen vinden. Je bent nooit verplicht om over te stappen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Wat zijn de minimale afnamehoeveelheden?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Dit verschilt per product en leverancier. Veel fabrikanten hanteren een MOQ (Minimum Order Quantity) van 100 tot 500 stuks. Wij onderhandelen zo laag mogelijk voor je — zeker voor nieuwe verkopers die klein willen beginnen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Kan ik producten van meerdere leveranciers combineren in één zending?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Ja, dit is juist een van onze grootste voordelen. We consolideren producten van verschillende leveranciers in één container of zending naar Nederland. Dit bespaart aanzienlijk op de verzendkosten per product.</div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-category-title">Kwaliteit & levering</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Hoe werkt de kwaliteitscontrole?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Voordat de goederen vanuit China vertrekken, laten we een inspectie uitvoeren. We controleren op afmetingen, materiaal, verpakking en eventuele defecten. Als er iets niet klopt, wordt dit direct opgelost met de leverancier — nog voor de zending op weg gaat.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Hoe lang duurt de levering vanuit China?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Per zeevracht duurt het gemiddeld 30 tot 45 dagen van China naar Nederland. Via luchtvracht kan dat terug naar 7 tot 14 dagen, maar dat is een stuk duurder. We bespreken in de offerte altijd welke optie het beste past bij jouw situatie en deadline.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Regelen jullie ook de douane en invoerrechten?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Ja, wij begeleiden het volledige importproces inclusief douane-inklaring. Invoerrechten en btw zijn voor rekening van de koper, maar we zorgen dat alles correct en vlot verloopt zodat jij geen gedoe hebt met de Belastingdienst of douane.</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="faq-cta">
+      <h3>Staat jouw vraag er niet bij?</h3>
+      <p>Mail ons op <strong>info@windtco.nl</strong> of vraag direct een gratis offerte aan — dan beantwoorden we al je vragen persoonlijk.</p>
+      <a href="index.html#offerte" class="btn-primary">🚀 Vraag gratis offerte aan</a>
+    </div>
+
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><span class="icon">🔒</span> Vertrouwelijke behandeling</div>
+    <div class="trust-item"><span class="icon">⚡</span> Reactie binnen 48 uur</div>
+    <div class="trust-item"><span class="icon">🇳🇱</span> Nederlands bedrijf</div>
+    <div class="trust-item"><span class="icon">✅</span> Gratis & vrijblijvend</div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <strong>windtco</strong> — E-Commerce Services voor bol.com verkopers</p>
+    <p style="margin-top:6px;">Vragen? Mail ons op <strong>info@windtco.nl</strong></p>
+  </footer>
+
+  <script>
+    function toggle(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>
