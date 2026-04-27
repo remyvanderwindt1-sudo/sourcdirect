@@ -525,6 +525,79 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ===== TESTIMONIALS ===== */
+    .testimonials { background: var(--light-bg); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: box-shadow 0.2s;
+    }
+    .testimonial-card:hover { box-shadow: var(--shadow); }
+    .testimonial-stars { color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; }
+    .testimonial-quote {
+      color: #374151;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      flex: 1;
+      font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.95rem; color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-weight: 700; font-size: 0.92rem; color: #1a1a2e; }
+    .testimonial-company { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ===== IMAGE UPLOAD ===== */
+    .upload-divider {
+      display: flex; align-items: center; gap: 10px;
+      margin: 10px 0;
+      color: var(--text-muted); font-size: 0.8rem; font-weight: 600;
+    }
+    .upload-divider::before, .upload-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .upload-btn-label {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 16px;
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.88rem; font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      background: #fff;
+    }
+    .upload-btn-label:hover { border-color: var(--primary); color: var(--primary); background: var(--light-bg); }
+    .upload-preview {
+      display: none; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      background: var(--light-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem; color: #374151;
+    }
+    .upload-preview img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
+    .upload-preview .preview-name { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .upload-preview .preview-remove { background: none; border: none; color: #dc2626; cursor: pointer; font-size: 1rem; padding: 2px 6px; border-radius: 4px; }
+    .upload-preview .preview-remove:hover { background: #fee2e2; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 640px) {
       .form-row { grid-template-columns: 1fr; }
@@ -647,6 +720,48 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-label">Wat klanten zeggen</div>
+    <h2 class="section-title">Vertrouwd door bol.com verkopers</h2>
+    <p class="section-sub">Anderen gingen je voor. Dit zeggen zij over de samenwerking met windtco.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Binnen 48 uur had ik een offerte die 30% lager lag dan wat ik zelf gevonden had op Alibaba. Ik had nooit gedacht dat het zo makkelijk kon zijn."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:#0052cc;">MV</div>
+          <div>
+            <div class="testimonial-name">Mark V.</div>
+            <div class="testimonial-company">FitGear Nederland</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Eindelijk geen gedoe meer met Chinese leveranciers. windtco regelt alles en ik heb er geen omkijken naar. Mijn marges zijn met 20% gestegen."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:#16a34a;">SK</div>
+          <div>
+            <div class="testimonial-name">Sandra K.</div>
+            <div class="testimonial-company">KidsHome</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"De kwaliteitscontrole voor verzending heeft ons al twee keer behoed voor slechte producten. Dat heeft me een hoop negatieve reviews bespaard."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:#ff6b00;">TB</div>
+          <div>
+            <div class="testimonial-name">Thomas B.</div>
+            <div class="testimonial-company">HomeStyle NL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FORM SECTION -->
   <section class="form-section" id="offerte">
     <div class="section-label">Offerte aanvragen</div>
@@ -688,8 +803,8 @@
           <hr class="form-divider" />
 
           <!-- PRODUCTS -->
-          <div class="form-section-title">Alibaba producten</div>
-          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:18px;">Voeg hieronder de producten toe die je wilt inkopen. Vul de Alibaba link en de huidige prijs in zodat wij kunnen vergelijken.</p>
+          <div class="form-section-title">Producten</div>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:18px;">Voeg hieronder de producten toe die je wilt inkopen. Plak een Alibaba link, een andere websitelink, of upload een productfoto.</p>
 
           <div class="products-container" id="productsContainer">
             <!-- Product cards worden hier dynamisch toegevoegd -->
@@ -743,11 +858,12 @@
     // =============================================
     // CONFIGURATIE — VERVANG DIT MET JOUW WAARDEN
     // =============================================
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKQ4BodV8gTkYtpPKtrtSUP4o8iiLZcpACpd0wL9jBxy6w4P7pnRmjxlLctkX7fxCT9g/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxxvE6UT5Y6Lu6Y2oYA9CZJjzm2Hs0c2ZXfSGOqUGYnTYLXJjGKdjPLZL5_izd5nrU_vA/exec';
     // Zie README.md voor instructies hoe je dit instelt
     // =============================================
 
     let productCount = 0;
+    const productImageData = {};
 
     function addProduct() {
       if (productCount >= 10) {
@@ -771,8 +887,16 @@
         </div>
         <div class="product-fields">
           <div class="form-group full-width">
-            <label>Alibaba product URL <span class="required">*</span></label>
-            <input type="url" name="product_${num}_url" placeholder="https://www.alibaba.com/product-detail/..." required />
+            <label>Link of afbeelding van je product</label>
+            <input type="url" name="product_${num}_url" id="product_${num}_url_input" placeholder="https://www.alibaba.com/product-detail/... of andere link" />
+            <div class="upload-divider">of upload een foto</div>
+            <label class="upload-btn-label" for="product_${num}_file">📷 Kies een productafbeelding</label>
+            <input type="file" id="product_${num}_file" accept="image/*" style="display:none;" onchange="handleImageUpload(${num}, this)" />
+            <div class="upload-preview" id="product_${num}_preview">
+              <img id="product_${num}_thumb" src="" alt="preview" />
+              <span class="preview-name" id="product_${num}_filename"></span>
+              <button type="button" class="preview-remove" onclick="removeImage(${num})">✕</button>
+            </div>
           </div>
           <div class="form-group">
             <label>Huidige prijs op Alibaba (per stuk)</label>
@@ -797,6 +921,50 @@
     function removeProduct(num) {
       const card = document.getElementById(`product-${num}`);
       if (card) card.remove();
+      delete productImageData[num];
+    }
+
+    function compressImage(file) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => {
+          const MAX = 800;
+          let w = img.width, h = img.height;
+          if (w > MAX || h > MAX) {
+            const r = Math.min(MAX / w, MAX / h);
+            w = Math.floor(w * r); h = Math.floor(h * r);
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', 0.78));
+        };
+        img.src = URL.createObjectURL(file);
+      });
+    }
+
+    async function handleImageUpload(num, input) {
+      if (!input.files || !input.files[0]) return;
+      const file = input.files[0];
+      const base64 = await compressImage(file);
+      productImageData[num] = { base64, filename: file.name };
+      document.getElementById(`product_${num}_thumb`).src = base64;
+      document.getElementById(`product_${num}_filename`).textContent = file.name;
+      document.getElementById(`product_${num}_preview`).style.display = 'flex';
+      const urlInput = document.getElementById(`product_${num}_url_input`);
+      urlInput.value = '📷 ' + file.name;
+      urlInput.readOnly = true;
+      urlInput.style.opacity = '0.45';
+    }
+
+    function removeImage(num) {
+      delete productImageData[num];
+      const urlInput = document.getElementById(`product_${num}_url_input`);
+      document.getElementById(`product_${num}_file`).value = '';
+      document.getElementById(`product_${num}_preview`).style.display = 'none';
+      urlInput.value = '';
+      urlInput.readOnly = false;
+      urlInput.style.opacity = '1';
     }
 
     // Voeg automatisch 1 product toe bij laden
@@ -818,14 +986,14 @@
         return;
       }
 
-      // Check of er minstens 1 product URL is
+      // Check of er minstens 1 product is (URL of foto)
       const productUrls = document.querySelectorAll('[name$="_url"]');
       let hasProduct = false;
       productUrls.forEach(input => {
         if (input.value.trim()) hasProduct = true;
       });
       if (!hasProduct) {
-        alert('Voeg minstens één Alibaba product link toe.');
+        alert('Voeg minstens één product toe met een link of een foto.');
         return;
       }
 
@@ -844,6 +1012,12 @@
         data[key] = value;
       });
       data.timestamp = new Date().toLocaleString('nl-NL', { timeZone: 'Europe/Amsterdam' });
+
+      // Voeg gecomprimeerde afbeeldingen toe aan de payload
+      Object.keys(productImageData).forEach(num => {
+        data[`product_${num}_image`] = productImageData[num].base64;
+        data[`product_${num}_image_filename`] = productImageData[num].filename;
+      });
 
       try {
         if (GOOGLE_SCRIPT_URL === 'JOUW_GOOGLE_APPS_SCRIPT_URL_HIER') {
@@ -872,6 +1046,10 @@
     function showSuccess() {
       document.getElementById('formBody').style.display = 'none';
       const success = document.getElementById('successMessage');
+      const hasImages = [...document.querySelectorAll('[name$="_url"]')].some(i => i.value.startsWith('📷'));
+      success.querySelector('p').innerHTML = hasImages
+        ? 'Bedankt voor je aanvraag. We nemen binnen <strong>48 uur</strong> contact op. <br><br>📷 <strong>Je hebt foto\'s bijgevoegd</strong> — stuur deze ook naar <strong>info@windtco.nl</strong> zodat we ze kunnen bekijken.'
+        : 'Bedankt voor je aanvraag. We nemen binnen <strong>48 uur</strong> contact met je op via e-mail met een offerte op maat.';
       success.style.display = 'block';
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }

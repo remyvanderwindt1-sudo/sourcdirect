@@ -20,12 +20,30 @@ const MAX_PRODUCTS = 10;              // Maximaal aantal producten per aanvraag
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
+
+    // Sla productafbeeldingen op in Google Drive (per product afzonderlijk, zodat een fout niet alles blokkeert)
+    for (let i = 1; i <= MAX_PRODUCTS; i++) {
+      const base64 = data[`product_${i}_image`];
+      const filename = data[`product_${i}_image_filename`];
+      if (base64 && filename) {
+        try {
+          data[`product_${i}_url`] = saveImageToDrive(base64, filename);
+        } catch (driveErr) {
+          // Drive mislukt → zet bestandsnaam als fallback zodat de rij wél weggeschreven wordt
+          data[`product_${i}_url`] = '📷 ' + filename + ' (Drive fout: ' + driveErr.message + ')';
+          console.error('Drive fout product ' + i + ':', driveErr);
+        }
+        delete data[`product_${i}_image`];
+        delete data[`product_${i}_image_filename`];
+      }
+    }
+
     const sheet = getOrCreateSheet();
-    
+
     // Bouw de rij op
     const row = buildRow(data);
     sheet.appendRow(row);
-    
+
     // Opmaak toepassen op de nieuwe rij
     formatLastRow(sheet);
 
@@ -178,13 +196,51 @@ function formatLastRow(sheet) {
     const urlCol = 6 + ((i - 1) * 4);
     const urlCell = sheet.getRange(lastRow, urlCol);
     const urlValue = urlCell.getValue();
-    if (urlValue && urlValue.startsWith('http')) {
+    if (urlValue && urlValue.startsWith('https://drive.google.com')) {
+      urlCell.setFormula(`=HYPERLINK("${urlValue}";"Bekijk afbeelding")`);
+      urlCell.setFontColor('#0052cc');
+    } else if (urlValue && urlValue.startsWith('http')) {
       urlCell.setFontColor('#0052cc');
     }
   }
   
   range.setVerticalAlignment('middle');
   sheet.setRowHeight(lastRow, 40);
+}
+
+/**
+ * Sla een base64-afbeelding op in Google Drive en geef de deelbare link terug
+ */
+function saveImageToDrive(base64Data, filename) {
+  const folder = getOrCreateImageFolder();
+  const base64 = base64Data.split(',')[1];
+  const mimeType = base64Data.split(';')[0].split(':')[1];
+  const blob = Utilities.newBlob(Utilities.base64Decode(base64), mimeType, filename);
+  const file = folder.createFile(blob);
+  try {
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  } catch (sharingErr) {
+    // Delen kan geblokkeerd zijn door accountinstellingen — bestand is wél opgeslagen
+    console.log('Delen instellen mislukt (niet kritiek):', sharingErr.message);
+  }
+  return file.getUrl();
+}
+
+/**
+ * Haal de Google Drive-map op voor productafbeeldingen, of maak hem aan
+ */
+function getOrCreateImageFolder() {
+  const folderName = 'windtco Productafbeeldingen';
+  const folders = DriveApp.getFoldersByName(folderName);
+  return folders.hasNext() ? folders.next() : DriveApp.createFolder(folderName);
+}
+
+/**
+ * Eenmalig uitvoeren vanuit de editor om Drive-toestemming te activeren
+ */
+function testDrive() {
+  const folder = getOrCreateImageFolder();
+  Logger.log('Drive werkt ✅ Map: ' + folder.getName());
 }
 
 /**
