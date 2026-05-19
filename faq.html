@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Veelgestelde vragen – windtco</title>
+  <title>Veelgestelde vragen – windtco B2B Inkoopservice</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -41,17 +41,10 @@
       height: 64px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-link {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-muted);
       transition: color 0.2s;
@@ -94,9 +87,7 @@
       margin: 0 auto;
       padding: 64px 5%;
     }
-    .faq-category {
-      margin-bottom: 48px;
-    }
+    .faq-category { margin-bottom: 48px; }
     .faq-category-title {
       font-size: 0.78rem;
       font-weight: 700;
@@ -114,9 +105,7 @@
       overflow: hidden;
       transition: box-shadow 0.2s;
     }
-    .faq-item:hover {
-      box-shadow: var(--shadow);
-    }
+    .faq-item:hover { box-shadow: var(--shadow); }
     .faq-question {
       width: 100%;
       background: #fff;
@@ -138,23 +127,15 @@
     .faq-item.open .faq-question { background: var(--light-bg); color: var(--primary); }
     .faq-icon {
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
+      width: 24px; height: 24px;
       border-radius: 50%;
       background: var(--light-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 900;
       color: var(--primary);
       transition: transform 0.25s, background 0.2s;
     }
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      background: var(--primary);
-      color: #fff;
-    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--primary); color: #fff; }
     .faq-answer {
       max-height: 0;
       overflow: hidden;
@@ -164,10 +145,7 @@
       font-size: 0.95rem;
       line-height: 1.7;
     }
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-      padding: 0 24px 20px;
-    }
+    .faq-item.open .faq-answer { max-height: 400px; padding: 0 24px 20px; }
 
     /* ===== CTA BLOCK ===== */
     .faq-cta {
@@ -178,16 +156,8 @@
       text-align: center;
       margin-top: 16px;
     }
-    .faq-cta h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-    .faq-cta p {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      font-size: 0.95rem;
-    }
+    .faq-cta h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .faq-cta p { color: var(--text-muted); margin-bottom: 24px; font-size: 0.95rem; }
     .btn-primary {
       background: var(--accent);
       color: #fff;
@@ -210,13 +180,7 @@
       gap: 40px;
       flex-wrap: wrap;
     }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      opacity: 0.85;
-    }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; opacity: 0.85; }
     .trust-item .icon { font-size: 1.1rem; }
 
     /* ===== FOOTER ===== */
@@ -229,9 +193,11 @@
     }
     footer strong { color: #fff; }
 
+    @media (max-width: 768px) {
+      .nav-links .nav-link { display: none; }
+    }
     @media (max-width: 640px) {
       nav { padding: 0 4%; }
-      .nav-link { display: none; }
       .faq-section { padding: 40px 5%; }
       .faq-cta { padding: 28px 20px; }
     }
@@ -251,16 +217,18 @@
       </svg>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#diensten" class="nav-link">Diensten</a>
+      <a href="index.html#werkwijze" class="nav-link">Werkwijze</a>
+      <a href="index.html#voor-wie" class="nav-link">Voor wie</a>
       <a href="faq.html" class="nav-link active">FAQ</a>
-      <a href="index.html#offerte" class="nav-cta">Gratis offerte →</a>
+      <a href="index.html#contact" class="nav-cta">Vraag een offerte aan →</a>
     </div>
   </nav>
 
   <!-- PAGE HEADER -->
   <div class="page-header">
     <h1>Veelgestelde vragen</h1>
-    <p>Alles wat je wilt weten over onze sourcing service voor bol.com verkopers.</p>
+    <p>Alles wat u wilt weten over de B2B inkoopservice van windtco.</p>
   </div>
 
   <!-- FAQ -->
@@ -271,90 +239,106 @@
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Is een offerte aanvragen echt gratis?
+          Is een offerte aanvragen gratis en vrijblijvend?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Ja, volledig gratis en vrijblijvend. Je betaalt niets voor het aanvragen van een offerte. Pas als je akkoord gaat met onze prijs en de samenwerking start, worden er kosten in rekening gebracht.</div>
+        <div class="faq-answer">Ja, volledig gratis en vrijblijvend. U betaalt niets voor het aanvragen van een prijsanalyse. Pas wanneer u akkoord gaat met onze prijs en de samenwerking start, worden er kosten in rekening gebracht.</div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Hoe snel ontvang ik een offerte?
+          Wat zijn de kosten van de windtco service?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Wij streven ernaar om binnen 48 uur na ontvangst van je aanvraag een offerte op maat te sturen. Bij complexe aanvragen met veel producten kan dit soms iets langer duren — we laten het je altijd weten.</div>
+        <div class="faq-answer">Onze servicefee is verwerkt in de offerteprijs die u ontvangt. Er zijn geen verborgen kosten, abonnementen of opstartkosten. U ziet altijd exact wat u betaalt voordat u een beslissing neemt.</div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Wat kost de windtco service?
+          Hoe snel ontvangen wij een offerte?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Onze servicefee is verwerkt in de offerteprijs die je ontvangt. Er zijn geen verborgen kosten of abonnementen. Je ziet altijd exact wat je betaalt voordat je een beslissing neemt.</div>
+        <div class="faq-answer">Wij streven ernaar om binnen 48 uur na ontvangst van uw aanvraag een prijsindicatie te sturen. Bij complexe aanvragen met meerdere productcategorieën kan dit soms iets langer duren — wij informeren u hier altijd over.</div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Werken jullie alleen met bol.com verkopers?
+          Wat is de minimale orderwaarde?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">We richten ons primair op bol.com verkopers omdat we de Nederlandse e-commerce markt goed kennen. Maar we helpen ook verkopers op andere platformen zoals Amazon.nl of webshop-eigenaren. Neem gerust contact op als je twijfelt.</div>
+        <div class="faq-answer">Wij werken vanaf een orderwaarde van €2.500 per bestelling. Dit is inclusief de productkosten maar exclusief verschepings- en invoerkosten. Bij twijfel over uw volume adviseren wij u graag vooraf.</div>
       </div>
     </div>
 
     <div class="faq-category">
-      <div class="faq-category-title">Inkoop & producten</div>
+      <div class="faq-category-title">Inkoop &amp; producten</div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
           Welke producten kunnen jullie sourcen?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Wij sourcen vrijwel alle productcategorieën die op Alibaba verkrijgbaar zijn: huishoudartikelen, elektronica, speelgoed, tuinartikelen, kleding, en meer. Producten die aan strenge veiligheidseisen moeten voldoen (zoals CE-keurmark) pakken we ook op — we helpen je met de juiste certificering.</div>
+        <div class="faq-answer">Wij sourcen vrijwel alle productcategorieën: textiel, meubilair, keukenartikelen, werkkleding, verpakkingsmateriaal, elektronica, sanitair en meer. Producten die moeten voldoen aan strenge certificeringseisen (CE, FDA, EN-normen) pakken wij ook op — wij begeleiden het certificeringsproces.</div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Wat als ik al een leverancier heb op Alibaba?
+          Kunnen wij een proeforder doen?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Geen probleem. Plak gewoon de Alibaba-link van jouw huidige leverancier in het formulier met de prijs die je nu betaalt. Wij kijken of we hetzelfde product goedkoper of van betere kwaliteit kunnen vinden. Je bent nooit verplicht om over te stappen.</div>
+        <div class="faq-answer">Ja, wij adviseren juist om te starten met een proeforder. Zo kunt u de kwaliteit, levertijd en communicatie beoordelen voordat u een grotere bestelling plaatst. Proeforders zijn mogelijk voor de meeste productcategorieën.</div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Wat zijn de minimale afnamehoeveelheden?
+          Is private label mogelijk?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Dit verschilt per product en leverancier. Veel fabrikanten hanteren een MOQ (Minimum Order Quantity) van 100 tot 500 stuks. Wij onderhandelen zo laag mogelijk voor je — zeker voor nieuwe verkopers die klein willen beginnen.</div>
+        <div class="faq-answer">Ja. Wij regelen eigen verpakking, logo-integratie en — indien gewenst — productontwikkeling op maat. Private label is beschikbaar voor de meeste productcategorieën en vereist doorgaans een minimale afname. Wij adviseren u over de haalbaarheid en kosten.</div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Kan ik producten van meerdere leveranciers combineren in één zending?
+          Kunnen producten van meerdere leveranciers worden gecombineerd?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Ja, dit is juist een van onze grootste voordelen. We consolideren producten van verschillende leveranciers in één container of zending naar Nederland. Dit bespaart aanzienlijk op de verzendkosten per product.</div>
+        <div class="faq-answer">Ja, dit is juist een van onze kernvoordelen. Wij consolideren producten van verschillende fabrikanten in één container of zending naar Nederland. Dit bespaart aanzienlijk op de verzendkosten per productlijn.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Wat zijn de betalingsvoorwaarden?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Wij hanteren een aanbetaling bij orderbevestiging. Het restbedrag wordt voldaan na goedkeuring van de pre-shipment inspectie. Zo heeft u altijd een controlepunt voordat de volledige betaling plaatsvindt. De exacte voorwaarden staan vermeld in de offerte.</div>
       </div>
     </div>
 
     <div class="faq-category">
-      <div class="faq-category-title">Kwaliteit & levering</div>
+      <div class="faq-category-title">Kwaliteit &amp; levering</div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Hoe werkt de kwaliteitscontrole?
+          Hoe werkt de kwaliteitscontrole precies?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Voordat de goederen vanuit China vertrekken, laten we een inspectie uitvoeren. We controleren op afmetingen, materiaal, verpakking en eventuele defecten. Als er iets niet klopt, wordt dit direct opgelost met de leverancier — nog voor de zending op weg gaat.</div>
+        <div class="faq-answer">Voordat uw goederen vanuit China vertrekken, voert een onafhankelijke inspecteur een pre-shipment inspectie ter plaatse uit. Wij controleren op afmetingen, materiaalspecificaties, verpakking, labelverplichtingen en defecten. Eventuele afwijkingen worden direct opgelost met de leverancier — uw zending gaat pas op weg na formele goedkeuring.</div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggle(this)">
-          Hoe lang duurt de levering vanuit China?
+          Hoe lang duurt het van aanvraag tot levering?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Per zeevracht duurt het gemiddeld 30 tot 45 dagen van China naar Nederland. Via luchtvracht kan dat terug naar 7 tot 14 dagen, maar dat is een stuk duurder. We bespreken in de offerte altijd welke optie het beste past bij jouw situatie en deadline.</div>
+        <div class="faq-answer">Gemiddeld 8 tot 12 weken: 2 tot 3 weken voor productie en leveranciersselectie, gevolgd door 25 tot 35 dagen zeevracht naar Nederland en 1 tot 2 weken voor douane-inklaring en transport. Via luchtvracht is dit aanzienlijk sneller, maar ook duurder. Wij bespreken de beste optie in de offerte op basis van uw deadline en budget.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Hoe worden klachten of tegenvallende leveringen afgehandeld?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Wij zijn uw aanspreekpunt en bemiddelen direct met de leverancier. Bij aantoonbare kwaliteitsafwijkingen ten opzichte van de goedgekeurde specificaties regelen wij een creditnota, een vervangende zending of een andere passende oplossing. Onze pre-shipment inspectie is er juist op gericht dergelijke situaties te voorkomen.</div>
       </div>
 
       <div class="faq-item">
@@ -362,15 +346,15 @@
           Regelen jullie ook de douane en invoerrechten?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer">Ja, wij begeleiden het volledige importproces inclusief douane-inklaring. Invoerrechten en btw zijn voor rekening van de koper, maar we zorgen dat alles correct en vlot verloopt zodat jij geen gedoe hebt met de Belastingdienst of douane.</div>
+        <div class="faq-answer">Ja, wij begeleiden het volledige importproces inclusief douane-inklaring, het opstellen van de benodigde documenten en de aangifte bij de Douane. Invoerrechten en btw zijn voor rekening van de koper, maar wij zorgen voor een correcte en vlotte afhandeling zodat uw goederen zonder vertraging worden vrijgegeven.</div>
       </div>
     </div>
 
     <!-- CTA -->
     <div class="faq-cta">
-      <h3>Staat jouw vraag er niet bij?</h3>
-      <p>Mail ons op <strong>info@windtco.nl</strong> of vraag direct een gratis offerte aan — dan beantwoorden we al je vragen persoonlijk.</p>
-      <a href="index.html#offerte" class="btn-primary">🚀 Vraag gratis offerte aan</a>
+      <h3>Staat uw vraag er niet bij?</h3>
+      <p>Mail ons op <strong>info@windtco.nl</strong> of vraag direct een gratis prijsanalyse aan — dan beantwoorden wij al uw vragen persoonlijk.</p>
+      <a href="index.html#contact" class="btn-primary">Gratis prijsanalyse aanvragen</a>
     </div>
 
   </div>
@@ -379,13 +363,13 @@
   <div class="trust-bar">
     <div class="trust-item"><span class="icon">🔒</span> Vertrouwelijke behandeling</div>
     <div class="trust-item"><span class="icon">⚡</span> Reactie binnen 48 uur</div>
-    <div class="trust-item"><span class="icon">🇳🇱</span> Nederlands bedrijf</div>
-    <div class="trust-item"><span class="icon">✅</span> Gratis & vrijblijvend</div>
+    <div class="trust-item"><span class="icon">🇳🇱</span> Gevestigd in Nederland</div>
+    <div class="trust-item"><span class="icon">✅</span> Gratis &amp; vrijblijvend</div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 <strong>windtco</strong> — E-Commerce Services voor bol.com verkopers</p>
+    <p>© 2026 <strong>windtco</strong> — B2B Inkoopservice</p>
     <p style="margin-top:6px;">Vragen? Mail ons op <strong>info@windtco.nl</strong></p>
   </footer>
 

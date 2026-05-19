@@ -93,16 +93,17 @@ function createHeaders(sheet) {
     'Datum & Tijd',
     'Naam',
     'E-mailadres',
-    'Bol.com Winkel',
+    'Bedrijfsnaam',
+    'Sector',
+    'Inkoopvolume',
     'Telefoonnummer',
   ];
-  
+
   // Product kolommen (tot MAX_PRODUCTS)
   for (let i = 1; i <= MAX_PRODUCTS; i++) {
-    headers.push(`Product ${i} – Alibaba URL`);
-    headers.push(`Product ${i} – Naam/Omschrijving`);
-    headers.push(`Product ${i} – Huidige Prijs`);
+    headers.push(`Product ${i} – Omschrijving`);
     headers.push(`Product ${i} – Gewenste Qty`);
+    headers.push(`Product ${i} – Afbeelding`);
   }
   
   headers.push('Opmerkingen');
@@ -122,20 +123,21 @@ function createHeaders(sheet) {
   sheet.setColumnWidth(1, 160);  // Datum
   sheet.setColumnWidth(2, 140);  // Naam
   sheet.setColumnWidth(3, 200);  // Email
-  sheet.setColumnWidth(4, 160);  // Winkel
-  sheet.setColumnWidth(5, 140);  // Telefoon
-  
+  sheet.setColumnWidth(4, 180);  // Bedrijfsnaam
+  sheet.setColumnWidth(5, 160);  // Sector
+  sheet.setColumnWidth(6, 160);  // Inkoopvolume
+  sheet.setColumnWidth(7, 140);  // Telefoon
+
   // Product kolommen
   for (let i = 0; i < MAX_PRODUCTS; i++) {
-    const col = 6 + (i * 4);
-    sheet.setColumnWidth(col, 300);      // URL
-    sheet.setColumnWidth(col + 1, 200);  // Naam
-    sheet.setColumnWidth(col + 2, 120);  // Prijs
-    sheet.setColumnWidth(col + 3, 100);  // Qty
+    const col = 8 + (i * 3);
+    sheet.setColumnWidth(col, 240);      // Omschrijving
+    sheet.setColumnWidth(col + 1, 100);  // Qty
+    sheet.setColumnWidth(col + 2, 260);  // Afbeelding
   }
-  
+
   // Opmerkingen & Status
-  const lastProductCol = 6 + (MAX_PRODUCTS * 4);
+  const lastProductCol = 8 + (MAX_PRODUCTS * 3);
   sheet.setColumnWidth(lastProductCol, 250);      // Opmerkingen
   sheet.setColumnWidth(lastProductCol + 1, 140);  // Status
   
@@ -151,16 +153,17 @@ function buildRow(data) {
     data.timestamp || new Date().toLocaleString('nl-NL'),
     data.naam || '',
     data.email || '',
-    data.winkel || '',
+    data.bedrijfsnaam || '',
+    data.sector || '',
+    data.jaarvolume || '',
     data.telefoon || '',
   ];
-  
+
   // Product data
   for (let i = 1; i <= MAX_PRODUCTS; i++) {
-    row.push(data[`product_${i}_url`] || '');
     row.push(data[`product_${i}_naam`] || '');
-    row.push(data[`product_${i}_prijs`] || '');
     row.push(data[`product_${i}_qty`] || '');
+    row.push(data[`product_${i}_url`] || '');
   }
   
   row.push(data.opmerkingen || '');
@@ -191,9 +194,9 @@ function formatLastRow(sheet) {
   statusCell.setFontWeight('bold');
   statusCell.setHorizontalAlignment('center');
   
-  // URL cellen klikbaar maken
+  // Afbeelding cellen klikbaar maken (kolom 3 per product = Drive URL)
   for (let i = 1; i <= MAX_PRODUCTS; i++) {
-    const urlCol = 6 + ((i - 1) * 4);
+    const urlCol = 8 + ((i - 1) * 3) + 2;
     const urlCell = sheet.getRange(lastRow, urlCol);
     const urlValue = urlCell.getValue();
     if (urlValue && urlValue.startsWith('https://drive.google.com')) {
